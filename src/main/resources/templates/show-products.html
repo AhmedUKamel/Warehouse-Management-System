@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>المنتجات</title>
+</head>
+<body class="sidebar-noneoverflow">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+
+        <div class="page-header">
+            <div class="page-title">
+                <h3>المنتجات</h3>
+            </div>
+        </div>
+
+        <div class="row layout-top-spacing layout-spacing">
+            <div class="col-lg-12">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <div class="table-responsive mb-4">
+                            <p th:text="${error}" style="color: red;"></p>
+                            <table id="style-3" class="table style-3  table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="checkbox-column text-center">رقم المنتج</th>
+                                    <th>أسم المنتج</th>
+                                    <th>نوع المنتج</th>
+                                    <th class="text-center">أشهر الصلاحية</th>
+                                    <th>
+                                        <a th:href="@{/products/add}">
+                                            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3"
+                                                      d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                      fill="#00ff00"></path>
+                                                <path d="M9 12H15" stroke="#323232" stroke-width="1.5"
+                                                      stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 9L12 15" stroke="#323232" stroke-width="1.5"
+                                                      stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                      stroke="#323232" stroke-width="1.5"></path>
+                                            </svg>
+                                        </a>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="product : ${products}">
+                                    <td th:text="${product.id}" class="checkbox-column text-center"></td>
+                                    <td th:text="${product.name}"></td>
+                                    <td th:text="${product.stock.name}"></td>
+                                    <td th:text="${product.monthsValidation}" class="text-center"></td>
+                                    <td>
+                                        <a th:href="@{/products/delete/{id}(id=${product.id})}">
+                                            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3"
+                                                      d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                      fill="#ff0000"/>
+                                                <path d="M9 12H15" stroke="#323232" stroke-width="1.5"
+                                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                      stroke="#323232" stroke-width="1.5"/>
+                                            </svg>
+                                        </a>
+                                        <a th:href="@{/products/edit/{id}(id=${product.id})}">
+                                            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3"
+                                                      d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z"
+                                                      fill="#323232"/>
+                                                <path d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z"
+                                                      stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                      stroke-linejoin="round"/>
+                                                <path d="M15.3096 5.30981L18.7273 8.72755" stroke="#323232"
+                                                      stroke-width="1.5" stroke-linecap="round"
+                                                      stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>أضافة طلب أسترجاع</title>
+</head>
+<body class="sidebar-noneoverflow" data-spy="scroll" data-target="#navSection" data-offset="100">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3>تفاصيل المنتجات المصروفة</h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid3" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <form th:action="@{/permission/return/item/add}" method="post">
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="productId">الصنف</label>
+                                    <select name="productId" id="productId" class="form-control" required>
+                                        <option th:value="${product.id}"
+                                                th:text="${product.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="number">العدد</label>
+                                    <input name="number" id="number" type="number" class="form-control" min="1"
+                                           placeholder="عدد القطع" th:max="${max}" required autofocus>
+                                </div>
+                            </div>
+                            <div class="form-row mb-4">
+                                <label for="detailsNote">الملاحظات</label>
+                                <input type="text" class="form-control" id="detailsNote" name="note" value="لا يوجد">
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-3">أسترجاع الصنف</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

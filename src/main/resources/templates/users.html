@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>عرض المستخدمين</title>
+</head>
+<body class="sidebar-noneoverflow">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عرض المستخدمين المفعلين</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row1">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <p th:text="${error}" style="color: red;"></p>
+                        <table id="html5-extension1" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">الرقم القومي</th>
+                                <th>أسم المستخدم عربي</th>
+                                <th>أسم المستخدم انجليزي</th>
+                                <th>البريد الأليكتروني</th>
+                                <th class="text-center">رقم الهاتف</th>
+                                <th class="text-center">العمليات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="applicationUser : ${enabledUsers}">
+                                <td th:text="${applicationUser.id}" class="text-center"></td>
+                                <td th:text="${applicationUser.nameArabic}"></td>
+                                <td th:text="${applicationUser.nameEnglish}"></td>
+                                <td th:text="${applicationUser.email}"></td>
+                                <td th:text="${applicationUser.phone}" class="text-center"></td>
+                                <td class="text-center">
+                                    <a th:href="@{/users/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z"
+                                                  fill="#323232"/>
+                                            <path d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M15.3096 5.30981L18.7273 8.72755" stroke="#323232"
+                                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a th:href="@{/users/usage/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="الأستهلاك">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M12 8L12 13" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round"/>
+                                            <path d="M12 16V15.9888" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                        </svg>
+                                    </a>
+                                    <a th:href="@{/users/delete/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#ff0000"/>
+                                            <path d="M9 12H15" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                        </svg>
+                                    </a>
+                                    <a th:if="${applicationUser.enabled}"
+                                       th:href="@{/users/disable/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title="" data-original-title="تعطيل">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#ffff00"/>
+                                            <path d="M9 9L15 15" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M15 9L9 15" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عرض المستخدمين المعطلين</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row2">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension2" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">الرقم القومي</th>
+                                <th>أسم المستخدم عربي</th>
+                                <th>أسم المستخدم انجليزي</th>
+                                <th>البريد الأليكتروني</th>
+                                <th class="text-center">رقم الهاتف</th>
+                                <th class="text-center">العمليات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="applicationUser : ${disabledUsers}">
+                                <td th:text="${applicationUser.id}" class="text-center"></td>
+                                <td th:text="${applicationUser.nameArabic}"></td>
+                                <td th:text="${applicationUser.nameEnglish}"></td>
+                                <td th:text="${applicationUser.email}"></td>
+                                <td th:text="${applicationUser.phone}" class="text-center"></td>
+                                <td class="text-center">
+                                    <a th:href="@{/users/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title="" data-original-title="تعديل">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z"
+                                                  fill="#323232"/>
+                                            <path d="M20.0651 7.39423L7.09967 20.4114C6.72438 20.7882 6.21446 21 5.68265 21H4.00383C3.44943 21 3 20.5466 3 19.9922V18.2987C3 17.7696 3.20962 17.2621 3.58297 16.8873L16.5517 3.86681C19.5632 1.34721 22.5747 4.87462 20.0651 7.39423Z"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M15.3096 5.30981L18.7273 8.72755" stroke="#323232"
+                                                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a th:href="@{/users/usage/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="الأستهلاك">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M12 8L12 13" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round"/>
+                                            <path d="M12 16V15.9888" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                        </svg>
+                                    </a>
+                                    <a th:href="@{/users/delete/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#ff0000"/>
+                                            <path d="M9 12H15" stroke="#323232" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                        </svg>
+                                    </a>
+                                    <a th:if="${!applicationUser.enabled}"
+                                       th:href="@{/users/enable/{id}(id=${applicationUser.id})}" class="bs-tooltip"
+                                       data-toggle="tooltip" data-placement="top" title="" data-original-title="تفعيل">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#00ff00"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                            <path d="M9 12L10.6828 13.6828V13.6828C10.858 13.858 11.142 13.858 11.3172 13.6828V13.6828L15 10"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

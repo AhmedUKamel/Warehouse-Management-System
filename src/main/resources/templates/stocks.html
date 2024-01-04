@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>جرد المخازن</title>
+</head>
+<body class="sidebar-noneoverflow">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3 th:text="${header}"></h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row1">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension1" class="html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>المنتج</th>
+                                <th class="text-center">عدد</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="row : ${remain}">
+                                <td th:text="${row.product.name}"></td>
+                                <td th:text="${row.number}" class="text-center"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title th:text="${title}"></title>
+</head>
+<body class="sidebar-noneoverflow" data-spy="scroll" data-target="#navSection" data-offset="100">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3 th:text="${heading}"></h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid0" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <form th:action="${action}" method="post">
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="stock1">المخزن</label>
+                                    <select class="form-control" id="stock1" name="stockId">
+                                        <option th:each="stock : ${stocks}"
+                                                th:value="${stock.id}"
+                                                th:text="${stock.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-3">أختيار المخزن</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

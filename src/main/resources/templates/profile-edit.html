@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+  <title th:text="'تعديل ' + ${user.nameArabic}"></title>
+</head>
+<body class="sidebar-noneoverflow">
+<div layout:fragment="content">
+  <div class="layout-px-spacing">
+    <div class="page-header">
+      <div class="page-title">
+        <h3>ادارة بيانات الحساب</h3>
+      </div>
+    </div>
+    <div class="row layout-spacing">
+      <div id="flFormsGrid1" class="col-sm-12 layout-top-spacing">
+        <div class="statbox widget box box-shadow">
+          <div class="widget-content widget-content-area">
+            <form th:action="${action}" method="post">
+              <p th:text="${error}" style="color: red;"></p>
+              <div class="form-row mb-4">
+                <div class="form-group col-md-6">
+                  <label for="id">الرقم القومي</label>
+                  <input th:value="${user.id}" type="text" class="form-control" id="id"
+                         name="id" readonly required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="imageUrl">رابط الصورة الشخصية</label>
+                  <input th:value="${user.imageUrl}" type="text" class="form-control"
+                         id="imageUrl"
+                         name="imageUrl">
+                </div>
+              </div>
+              <div class="form-row mb-4">
+                <div class="form-group col-md-6">
+                  <label for="nameArabic">الأسم بالعربي</label>
+                  <input th:value="${user.nameArabic}"
+                         type="text" class="form-control" id="nameArabic" name="nameArabic" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="nameEnglish">الأسم بالأنجليزي</label>
+                  <input th:value="${user.nameEnglish}"
+                         type="text" class="form-control" id="nameEnglish" name="nameEnglish" required>
+                </div>
+              </div>
+              <div class="form-row mb-4">
+                <div class="form-group col-md-6">
+                  <label for="email">البريد الأليكتروني</label>
+                  <input th:value="${user.email}" type="email" class="form-control" id="email"
+                         name="email" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="phone">رقم الهاتف</label>
+                  <input th:value="${user.phone}" type="text" class="form-control" id="phone"
+                         name="phone" required>
+                </div>
+              </div>
+              <div class="form-row mb-4">
+                <div class="form-group col-md-6">
+                  <label for="password">كلمة المرور</label>
+                  <input type="text" class="form-control" id="password"
+                         name="password">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="confirmPassword"> تأكيد كلمة المرور</label>
+                  <input type="text" class="form-control" id="confirmPassword"
+                         name="confirmPassword">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">تأكيد</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>الأستخدام</title>
+</head>
+<body class="sidebar-noneoverflow">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عمليات الأضافة لمخزن المستديم</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row1">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension1" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">رقم الأذن</th>
+                                <th>أسم المنتج</th>
+                                <th class="text-center">عدد</th>
+                                <th>حالة المنتج</th>
+                                <th class="text-center">اجمالي السعر</th>
+                                <th>تاريخ الأضافة</th>
+                                <th>كاتب الشطب</th>
+                                <th class="text-center">عرض</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="mainPut : ${mainPuts}">
+                                <td th:text="${mainPut.permission.id}" class="text-center"></td>
+                                <td th:text="${mainPut.product.name}"></td>
+                                <td th:text="${mainPut.number}" class="text-center"></td>
+                                <td th:text="${mainPut.status.name}"></td>
+                                <td th:text="${mainPut.totalPrice}" class="text-center"></td>
+                                <td th:text="${mainPut.permission.date}"></td>
+                                <td th:text="${mainPut.permission.writer.nameArabic}"></td>
+                                <td>
+                                    <a th:href="@{/profile/main/put/{id}(id=${mainPut.permission.id})}"
+                                       class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="عرض">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                            <path d="M8 12L8 15.5V15.5C8 15.7761 8.22386 16 8.5 16V16L12 16"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M16 12L16.0001 8.5V8.5C16.0001 8.22386 15.7761 8 15.5 8V8L12 8"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عمليات السحب من مخزن المستديم</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row2">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension2" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">رقم الأذن</th>
+                                <th>أسم المنتج</th>
+                                <th class="text-center">عدد</th>
+                                <th>حالة المنتج</th>
+                                <th>تاريخ الأضافة</th>
+                                <th>كاتب الشطب</th>
+                                <th class="text-center">عرض</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="mainGet : ${mainGets}">
+                                <td th:text="${mainGet.permission.id}" class="text-center"></td>
+                                <td th:text="${mainGet.product.name}"></td>
+                                <td th:text="${mainGet.number}" class="text-center"></td>
+                                <td th:text="${mainGet.status.name}"></td>
+                                <td th:text="${mainGet.permission.date}"></td>
+                                <td th:text="${mainGet.permission.writer.nameArabic}"></td>
+                                <td>
+                                    <a th:href="@{/profile/main/get/{id}(id=${mainGet.permission.id})}"
+                                       class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="عرض">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                            <path d="M8 12L8 15.5V15.5C8 15.7761 8.22386 16 8.5 16V16L12 16"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M16 12L16.0001 8.5V8.5C16.0001 8.22386 15.7761 8 15.5 8V8L12 8"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عمليات الأسترجاع الي مخزن المستديم</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row3">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension3" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">رقم الأذن</th>
+                                <th>أسم المنتج</th>
+                                <th class="text-center">عدد</th>
+                                <th>حالة المنتج</th>
+                                <th>تاريخ الأضافة</th>
+                                <th>كاتب الشطب</th>
+                                <th class="text-center">عرض</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="mainReturn : ${mainReturns}">
+                                <td th:text="${mainReturn.permission.id}" class="text-center"></td>
+                                <td th:text="${mainReturn.product.name}"></td>
+                                <td th:text="${mainReturn.number}" class="text-center"></td>
+                                <td th:text="${mainReturn.status.name}"></td>
+                                <td th:text="${mainReturn.permission.date}"></td>
+                                <td th:text="${mainReturn.permission.writer.nameArabic}"></td>
+                                <td>
+                                    <a th:href="@{/profile/main/return/{id}(id=${mainReturn.permission.id})}"
+                                       class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="عرض">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                            <path d="M8 12L8 15.5V15.5C8 15.7761 8.22386 16 8.5 16V16L12 16"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M16 12L16.0001 8.5V8.5C16.0001 8.22386 15.7761 8 15.5 8V8L12 8"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عمليات الأسترجاع الي مخزن الكهنة</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row4">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension4" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">رقم الأذن</th>
+                                <th>أسم المنتج</th>
+                                <th class="text-center">عدد</th>
+                                <th>حالة المنتج</th>
+                                <th>تاريخ الأضافة</th>
+                                <th>كاتب الشطب</th>
+                                <th class="text-center">عرض</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="oldReturn : ${oldReturns}">
+                                <td th:text="${oldReturn.permission.id}" class="text-center"></td>
+                                <td th:text="${oldReturn.product.name}"></td>
+                                <td th:text="${oldReturn.number}" class="text-center"></td>
+                                <td th:text="${oldReturn.status.name}"></td>
+                                <td th:text="${oldReturn.permission.date}"></td>
+                                <td th:text="${oldReturn.permission.writer.nameArabic}"></td>
+                                <td>
+                                    <a th:href="@{/profile/old/return/{id}(id=${oldReturn.permission.id})}"
+                                       class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="عرض">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                            <path d="M8 12L8 15.5V15.5C8 15.7761 8.22386 16 8.5 16V16L12 16"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M16 12L16.0001 8.5V8.5C16.0001 8.22386 15.7761 8 15.5 8V8L12 8"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عمليات الأضافة الي مخزن المستهلك</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row5">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension5" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">رقم الأذن</th>
+                                <th>أسم المنتج</th>
+                                <th class="text-center">عدد</th>
+                                <th>حالة المنتج</th>
+                                <th class="text-center">إجمالي السعر</th>
+                                <th>تاريخ الأضافة</th>
+                                <th>كاتب الشطب</th>
+                                <th class="text-center">عرض</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="consumedPut : ${consumedPuts}">
+                                <td th:text="${consumedPut.permission.id}" class="text-center"></td>
+                                <td th:text="${consumedPut.product.name}"></td>
+                                <td th:text="${consumedPut.number}" class="text-center"></td>
+                                <td th:text="${consumedPut.status.name}"></td>
+                                <td th:text="${consumedPut.totalPrice}" class="text-center"></td>
+                                <td th:text="${consumedPut.permission.date}"></td>
+                                <td th:text="${consumedPut.permission.writer.nameArabic}"></td>
+                                <td>
+                                    <a th:href="@{/profile/consumed/put/{id}(id=${consumedPut.permission.id})}"
+                                       class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="عرض">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                            <path d="M8 12L8 15.5V15.5C8 15.7761 8.22386 16 8.5 16V16L12 16"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M16 12L16.0001 8.5V8.5C16.0001 8.22386 15.7761 8 15.5 8V8L12 8"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <div class="page-title">
+                <h3>عمليات السحب من مخزن المستهلك</h3>
+            </div>
+        </div>
+        <div class="row layout-top-spacing" id="cancel-row6">
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table id="html5-extension6" class=" html5-extension table table-hover non-hover"
+                               style="width:100%">
+                            <thead>
+                            <tr>
+                                <th class="text-center">رقم الأذن</th>
+                                <th>أسم المنتج</th>
+                                <th class="text-center">عدد</th>
+                                <th>حالة المنتج</th>
+                                <th>تاريخ الأضافة</th>
+                                <th>كاتب الشطب</th>
+                                <th class="text-center">عرض</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="consumedGet : ${consumedGets}">
+                                <td th:text="${consumedGet.permission.id}" class="text-center"></td>
+                                <td th:text="${consumedGet.product.name}"></td>
+                                <td th:text="${consumedGet.number}" class="text-center"></td>
+                                <td th:text="${consumedGet.status.name}"></td>
+                                <td th:text="${consumedGet.permission.date}"></td>
+                                <td th:text="${consumedGet.permission.writer.nameArabic}"></td>
+                                <td>
+                                    <a th:href="@{/profile/consumed/get/{id}(id=${consumedGet.permission.id})}"
+                                       class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="عرض">
+                                        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                  d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  fill="#0000ff"/>
+                                            <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                  stroke="#323232" stroke-width="1.5"/>
+                                            <path d="M8 12L8 15.5V15.5C8 15.7761 8.22386 16 8.5 16V16L12 16"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                            <path d="M16 12L16.0001 8.5V8.5C16.0001 8.22386 15.7761 8 15.5 8V8L12 8"
+                                                  stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+                                                  stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

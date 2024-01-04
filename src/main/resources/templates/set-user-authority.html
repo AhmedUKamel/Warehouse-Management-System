@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>تغيين صلاحيات المستخدم</title>
+</head>
+<body class="sidebar-noneoverflow" data-spy="scroll" data-target="#navSection" data-offset="100">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3>أختيار المستخدم والصلاحية</h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid1" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <form th:action="@{/users/set}" method="get">
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="userId">المستخدم</label>
+                                    <select name="userId" id="userId" class="form-control" required>
+                                        <option th:each="applicationUser : ${users}"
+                                                th:value="${applicationUser.id}"
+                                                th:text="${applicationUser.nameArabic}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="authorityName">الصلاحية</label>
+                                    <select name="authorityName" id="authorityName" class="form-control" required>
+                                        <option th:each="authority : ${authorities}"
+                                                th:value="${authority.name()}"
+                                                th:text="${authority.name()}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-3">أضافة تعيين أمين</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

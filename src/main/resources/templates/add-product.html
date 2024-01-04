@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>المنتجات</title>
+</head>
+<body class="sidebar-noneoverflow">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3>منتج جديد</h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid2" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <form th:action="@{/products/add}" method="post">
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="name">أسم المنتج</label>
+                                    <input type="text" class="form-control" id="name" name="userId" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="monthsValidation">أشهر الصلاحية</label>
+                                    <input name="number" id="monthsValidation" type="number"
+                                           class="form-control" min="1">
+                                </div>
+                            </div>
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="name11">نوع المنتج</label>
+                                    <select class="form-control" id="name11"
+                                            name="stockId" required>
+                                        <option th:each="st : ${stocks}"
+                                                th:value="${st.id}"
+                                                th:text="${st.name}">
+
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-3">أضافة منتج</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

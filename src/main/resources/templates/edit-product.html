@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>المنتجات</title>
+</head>
+<body class="sidebar-noneoverflow">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3>تعديل منتج</h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid3" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <form th:action="@{/products/edit}" method="post">
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="name2">أسم المنتج</label>
+                                    <input th:value="${product.name}" type="text" class="form-control" id="name2"
+                                           name="userId" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="monthsValidation2">أشهر الصلاحية</label>
+                                    <input th:value="${product.monthsValidation}" name="number"
+                                           id="monthsValidation2" type="number" class="form-control" min="0">
+                                </div>
+                            </div>
+                            <input th:value="${product.id}" name="productId" type="text" hidden="hidden" required>
+                            <input th:value="${product.stock.id}" name="stockId" type="text" hidden="hidden" required>
+                            <button type="submit" class="btn btn-primary mb-3">تعديل المنتج</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

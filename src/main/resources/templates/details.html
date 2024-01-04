@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>تفاصيل العمليات</title>
+</head>
+<body class="sidebar-noneoverflow" data-spy="scroll" data-target="#navSection" data-offset="100">
+<div layout:fragment="content">
+    <div th:if="${isGet}" class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3 th:text="'تفاصيل أذن الصرف رقم ' + ${mainGetPermission.id} + ' من المخزن ' + ${mainGetPermission.from.name}"></h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid4" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="to3">إلي</label>
+                                <input th:value="${mainGetPermission.to.nameArabic}" type="text" class="form-control"
+                                       id="to3"
+                                       readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="from4">المخزن</label>
+                                <input th:value="${mainGetPermission.from.name}" type="text" class="form-control"
+                                       id="from4" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <label for="zero-config3">تفاصيل الصرف</label>
+                            <table id="zero-config3" class="table table-hover" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>الصنف</th>
+                                    <th class="text-center">العدد</th>
+                                    <th>الحالة</th>
+                                    <th>ملاحظات</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="get : ${mainGets}">
+                                    <td th:text="${get.product.name}"></td>
+                                    <td th:text="${get.number}" class="text-center"></td>
+                                    <td th:text="${get.status.name}"></td>
+                                    <td th:text="${get.note}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="note3">ملاحظات</label>
+                                <input th:value="${mainGetPermission.note}" type="text" class="form-control" id="note3"
+                                       readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="date3">تاريخ</label>
+                                <input th:value="${mainGetPermission.date}" type="text" class="form-control" id="date3"
+                                       readonly>
+                            </div>
+
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="writer3">كاتب الشطب</label>
+                                <input th:value="${mainGetPermission.writer.nameArabic}" type="text" class="form-control"
+                                       id="writer3" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="admin2">أمين المخزن</label>
+                                <input th:value="${mainGetPermission.stockAdmin.nameArabic}" type="text"
+                                       class="form-control"
+                                       id="admin2" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${isPut}" class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3 th:text="'تفاصيل أذن الأضافة رقم ' + ${mainPutPermission.id} + ' الي مخزن ' + ${mainPutPermission.to.name}"></h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid1" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="from2">من</label>
+                                <input th:value="${mainPutPermission.from.nameArabic}" type="text" class="form-control"
+                                       id="from2" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="to2">المخزن</label>
+                                <input th:value="${mainPutPermission.to.name}" type="text" class="form-control" id="to2"
+                                       readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="document">سند الأضافة</label>
+                                <input th:value="${mainPutPermission.type.name}" type="text" class="form-control"
+                                       id="document" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="group">رقم المجموعة</label>
+                                <input th:value="${mainPutPermission.groupNumber}" type="text" class="form-control"
+                                       id="group" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <label for="zero-config1">تفاصيل الأضافة</label>
+                            <table id="zero-config1" class="table table-hover" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>الصنف</th>
+                                    <th class="text-center">العدد</th>
+                                    <th class="text-center">سعر الوحدة</th>
+                                    <th class="text-center">إجمالي السعر</th>
+                                    <th>الحالة</th>
+                                    <th>ملاحظات</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="mainPut : ${mainPuts}">
+                                    <td th:text="${mainPut.product.name}"></td>
+                                    <td th:text="${mainPut.number}" class="text-center"></td>
+                                    <td th:text="${mainPut.unitPrice}" class="text-center"></td>
+                                    <td th:text="${mainPut.totalPrice}" class="text-center"></td>
+                                    <td th:text="${mainPut.status.name}"></td>
+                                    <td th:text="${mainPut.note}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="note2">ملاحظات</label>
+                                <input th:value="${mainPutPermission.note}" type="text" class="form-control" id="note2"
+                                       readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="price">إجمالي السعر</label>
+                                <input th:value="${mainPutPermission.price}" type="text" class="form-control" id="price"
+                                       readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="writer2">كاتب الشطب</label>
+                                <input th:value="${mainPutPermission.writer.nameArabic}" type="text" class="form-control"
+                                       id="writer2" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="admin">أمين المخزن</label>
+                                <input th:value="${mainPutPermission.stockAdmin.nameArabic}" type="text"
+                                       class="form-control"
+                                       id="admin" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="date2">تاريخ</label>
+                                <input th:value="${mainPutPermission.date}" type="text" class="form-control"
+                                       id="date2" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${isReturn}" class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3 th:text="'طلب أسترجاع رقم ' + ${mainReturnPermission.id} + ' من مخزن ' + ${mainReturnPermission.to.name}"></h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid2" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="from">من</label>
+                                <input th:value="${mainReturnPermission.from.nameArabic}" type="text" class="form-control"
+                                       id="from" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="to">الي</label>
+                                <input th:value="${mainReturnPermission.to.name}" type="text" class="form-control"
+                                       id="to"
+                                       readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <label for="zero-config">الأصناف المرتجعة</label>
+                            <table id="zero-config" class="table table-hover" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>الصنف</th>
+                                    <th class="text-center">العدد</th>
+                                    <th>الحالة</th>
+                                    <th>ملاحظات</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="return : ${mainReturns}">
+                                    <td th:text="${return.product.name}"></td>
+                                    <td th:text="${return.number}" class="text-center"></td>
+                                    <td th:text="${return.status.name}"></td>
+                                    <td th:text="${return.note}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="note">ملاحظات</label>
+                                <input th:value="${mainReturnPermission.note}" type="text" class="form-control"
+                                       id="note"
+                                       readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="date">تاريخ</label>
+                                <input th:value="${mainReturnPermission.date}" type="text" class="form-control"
+                                       id="date" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="writer">كاتب الشطب</label>
+                                <input th:value="${mainReturnPermission.writer.nameArabic}" type="text" class="form-control"
+                                       id="writer" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="admin3">أمين المخزن</label>
+                                <input th:value="${mainReturnPermission.stockAdmin.nameArabic}" type="text"
+                                       class="form-control"
+                                       id="admin3" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${isExtraction}" class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3 th:text="'تفاصيل عملية الأتلاف رقم ' + ${oldGetPermission.id} + ' من مخزن ' + ${oldGetPermission.from.name}"></h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid3" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="from3">المخزن</label>
+                                <input th:value="${oldGetPermission.from.name}" type="text" class="form-control"
+                                       id="from3"
+                                       readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="note4">ملاحظات</label>
+                                <input th:value="${oldGetPermission.note}" type="text" class="form-control" id="note4"
+                                       readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <label for="zero-config2">تفاصيل الأتلاف</label>
+                            <table id="zero-config2" class="table table-hover" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>الصنف</th>
+                                    <th class="text-center">العدد</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="get : ${oldGets}">
+                                    <td th:text="${get.product.name}"></td>
+                                    <td th:text="${get.number}" class="text-center"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="writer4">كاتب الشطب</label>
+                                <input th:value="${oldGetPermission.writer.nameArabic}" type="text" class="form-control"
+                                       id="writer4" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="admin4">أمين المخزن</label>
+                                <input th:value="${oldGetPermission.stockAdmin.nameArabic}" type="text" class="form-control"
+                                       id="admin4" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label for="date4">تاريخ</label>
+                                <input th:value="${oldGetPermission.date}" type="text" class="form-control"
+                                       id="date4" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>نجاح التسجيل</title>
+    <link th:href="@{/assets/img/logo.jpg}"
+          rel="icon" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&amp;display=swap"
+          rel="stylesheet">
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/css/plugins.css}"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/css/structure.css}"
+          rel="stylesheet" type="text/css" class="structure"/>
+    <link th:href="@{/assets/css/authentication/form-2.css}"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/css/forms/theme-checkbox-radio.css}"
+          rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/forms/switches.css}"
+          rel="stylesheet" type="text/css">
+</head>
+<body class="form">
+<div class="form-container outer">
+    <div class="form-form">
+        <div class="form-form-wrap">
+            <div class="form-container">
+                <div class="form-content">
+                    <h1 class="">مرحبا بك</h1>
+                    <p th:text="${message}" style="color: #20ce1a;font-size: 20px;"></p>
+                    <div class="text-left">
+                        <div class="d-sm-flex justify-content-between">
+                            <div class="field-wrapper">
+                                <a class="btn btn-primary" th:href="@{/login}">التوجه الي صفحة تسجيل الدخول الأن</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/assets/js/libs/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/bootstrap/js/popper.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/authentication/form-2.js}"></script>
+</body>
+</html>

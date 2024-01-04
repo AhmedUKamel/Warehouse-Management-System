@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master_layout">
+<head>
+    <title>أضافة أذن صرف</title>
+</head>
+<body class="sidebar-noneoverflow" data-spy="scroll" data-target="#navSection" data-offset="100">
+<div layout:fragment="content">
+    <div class="layout-px-spacing">
+        <div class="page-header">
+            <div class="page-title">
+                <h3>أذن صرف</h3>
+            </div>
+        </div>
+        <div class="row layout-spacing">
+            <div id="flFormsGrid1" class="col-sm-12 layout-top-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area">
+                        <p th:text="${error}" style="color: red;"></p>
+                        <form th:action="@{/permission/get/new}" method="post">
+                            <div class="form-row mb-4">
+                                <label for="zero-config">تفاصيل الصرف</label>
+                                <table id="zero-config" class="table table-hover" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>الصنف</th>
+                                        <th class="text-center">العدد</th>
+                                        <th>الحالة</th>
+                                        <th>ملاحظات</th>
+                                        <th>
+                                            <a th:href="@{/permission/get/new/clear}" class="bs-tooltip"
+                                               data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="حذف الكل">
+                                                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.5"
+                                                          d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                          fill="#ff0000"/>
+                                                    <path d="M9 12H15" stroke="#323232" stroke-width="1.5"
+                                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                          stroke="#323232" stroke-width="1.5"/>
+                                                </svg>
+                                            </a>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="det : ${details}">
+                                        <td th:text="${det.product.name}"></td>
+                                        <td th:text="${det.number}" class="text-center"></td>
+                                        <td th:text="${det.status.name}"></td>
+                                        <td th:text="${det.note}"></td>
+                                        <td>
+                                            <a th:href="@{/permission/get/details/delete/{index}(index=${details.indexOf(det)})}"
+                                               class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="حذف صنف">
+                                                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3"
+                                                          d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                          fill="#ff0000"/>
+                                                    <path d="M9 12H15" stroke="#323232" stroke-width="1.5"
+                                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                          stroke="#323232" stroke-width="1.5"/>
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-row mb-4">
+                                <label for="zero-config1">الاصناف المتاحة</label>
+                                <table id="zero-config1" class="table table-hover" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>الصنف</th>
+                                        <th class="text-center">العدد</th>
+                                        <th class="no-content"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="item : ${items}">
+                                        <td th:text="${item.product.name}"></td>
+                                        <td th:text="${item.number}" class="text-center"></td>
+                                        <td>
+                                            <a th:href="@{/permission/get/{id}(id=${item.product.id})}"
+                                               class="bs-tooltip" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="أختيار">
+                                                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3"
+                                                          d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                          fill="#00ff00"></path>
+                                                    <path d="M9 12H15" stroke="#323232" stroke-width="1.5"
+                                                          stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M12 9L12 15" stroke="#323232" stroke-width="1.5"
+                                                          stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z"
+                                                          stroke="#323232" stroke-width="1.5"></path>
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="from">إلي</label>
+                                    <select name="userId" id="from" class="form-control" required>
+                                        <option th:each="applicationUser : ${users}"
+                                                th:value="${applicationUser.id}"
+                                                th:text="${applicationUser.nameArabic}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="stock">المخزن</label>
+                                    <input th:value="${stock.name}" type="text" class="form-control" id="stock"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-row mb-4">
+                                <div class="form-group col-md-6">
+                                    <label for="writer">كاتب الشطب</label>
+                                    <input th:value="${currentUser.nameArabic}" type="text" class="form-control" id="writer"
+                                           disabled>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="admin">أمين المخزن</label>
+                                    <input th:value="${stock.admin.nameArabic}" type="text" class="form-control" id="admin"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-row mb-4">
+                                <label for="note">ملاحظات</label>
+                                <input type="text" class="form-control" id="note" name="note" value="لا يوجد" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check pl-0">
+                                    <div class="custom-control custom-checkbox checkbox-info">
+                                        <input type="checkbox" class="custom-control-input" id="gridCheck" required>
+                                        <label class="custom-control-label" for="gridCheck"
+                                               th:text="'أقر انا ' + ${currentUser.nameArabic} + ' بأن جميع البيانات المدرجة صحيحة وغير قابلة للتعديل'"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-3">تأكيد الأذن</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
